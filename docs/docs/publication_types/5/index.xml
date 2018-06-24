@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>5 on MasaKoha&#39;s pages </title>
+    <link>https://masakoha.github.io/publication_types/5/</link>
+    <description>Recent content in 5 on MasaKoha&#39;s pages </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Fri, 26 Feb 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://masakoha.github.io/publication_types/5/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Unity 5 ゲーム開発はじめの一歩</title>
+      <link>https://masakoha.github.io/publication/unity5/</link>
+      <pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://masakoha.github.io/publication/unity5/</guid>
+      <description>執筆 大学院時代に沖縄で IGDA琉球大学を主宰していた際にお声がけいただき執筆いたしました。</description>
+    </item>
+    
+  </channel>
+</rss>
