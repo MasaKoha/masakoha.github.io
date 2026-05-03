@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flyers | Full Combo Legacy</title>
+    <meta name="description" content="Full Combo Legacy の歴代フライヤー一覧。Vol.00 から最新回までのフライヤーを掲載。">
+    <meta property="og:title" content="Flyers | Full Combo Legacy">
+    <meta property="og:description" content="Full Combo Legacy の歴代フライヤー一覧">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.masakoha.com/fcl-flyers.html">
+    <meta property="og:image" content="https://www.masakoha.com/assets/full_combo_legacy_header.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://www.masakoha.com/fcl-flyers.html">
+    <link rel="icon" type="image/png" href="./assets/masakoha_icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    >
+    <script>
+      document.documentElement.classList.add("js-motion");
+    </script>
+    <link rel="stylesheet" href="./events.css">
+    <style>
+      .appearances-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+      }
+
+      .appearance-card {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        border: 1px solid var(--line);
+        aspect-ratio: 1 / 1;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .appearance-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      }
+
+      .appearance-thumb {
+        position: absolute;
+        inset: 0;
+      }
+
+      .appearance-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .appearance-info {
+        position: absolute;
+        inset: 0;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 1px;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.82) 0%,
+          rgba(0, 0, 0, 0.35) 55%,
+          rgba(0, 0, 0, 0.15) 100%
+        );
+      }
+
+      .appearance-date {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.04em;
+      }
+
+      .appearance-title {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.3;
+      }
+
+      .year-heading {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        margin: 0;
+      }
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 300ms ease;
+      }
+
+      .lightbox.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .lightbox img {
+        max-width: 90vw;
+        max-height: 85vh;
+        border-radius: var(--radius-md);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        transform: scale(0.92);
+        transition: transform 300ms ease;
+      }
+
+      .lightbox.is-open img {
+        transform: scale(1);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        font-size: 1.4rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 180ms ease;
+      }
+
+      .lightbox-close:hover {
+        background: rgba(255, 255, 255, 0.24);
+      }
+
+      @media (max-width: 720px) {
+        .appearances-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 6px;
+        }
+
+        .appearance-card {
+          border-radius: 8px;
+        }
+
+        .appearance-info {
+          padding: 6px;
+        }
+
+        .appearance-date {
+          font-size: 0.54rem;
+        }
+
+        .appearance-title {
+          font-size: 0.58rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar reveal">
+        <a class="brand" href="./full-combo-legacy.html">Full Combo Legacy</a>
+        <nav class="topnav" aria-label="Section navigation">
+          <a href="./full-combo-legacy.html">Event Page</a>
+          <a href="#flyers">Flyers</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero reveal" aria-label="Hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Full Combo Legacy</p>
+            <h1>Flyers</h1>
+            <p class="hero-text">
+              Full Combo Legacy の歴代フライヤー一覧。タップで拡大表示できます。
+            </p>
+          </div>
+        </section>
+
+        <section id="flyers" class="section reveal">
+          <div class="section-head">
+            <p class="year-heading">2026</p>
+          </div>
+          <div class="appearances-grid">
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol18.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol18.jpg" alt="Full Combo Legacy Vol.18 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2026.05.23</span>
+                <span class="appearance-title">Vol.18</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol17.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol17.jpg" alt="Full Combo Legacy Vol.17 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2026.05.09</span>
+                <span class="appearance-title">Vol.17</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol16.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol16.jpg" alt="Full Combo Legacy Vol.16 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2026.04.25</span>
+                <span class="appearance-title">Vol.16</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol15.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol15.jpg" alt="Full Combo Legacy Vol.15 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2026.04.04</span>
+                <span class="appearance-title">Vol.15</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol14.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol14.jpg" alt="Full Combo Legacy Vol.14 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2026.03.21</span>
+                <span class="appearance-title">Vol.14</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol13.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol13.jpg" alt="Full Combo Legacy Vol.13 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2026.03.07</span>
+                <span class="appearance-title">Vol.13</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol12.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol12.jpg" alt="Full Combo Legacy Vol.12 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2026.02.21</span>
+                <span class="appearance-title">Vol.12</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol11.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol11.jpg" alt="Full Combo Legacy Vol.11 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2026.02.07</span>
+                <span class="appearance-title">Vol.11</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol10.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol10.jpg" alt="Full Combo Legacy Vol.10 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2026.01.24</span>
+                <span class="appearance-title">Vol.10</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol09.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol09.jpg" alt="Full Combo Legacy Vol.09 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2026.01.10</span>
+                <span class="appearance-title">Vol.09</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section reveal">
+          <div class="section-head">
+            <p class="year-heading">2025</p>
+          </div>
+          <div class="appearances-grid">
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol08.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol08.jpg" alt="Full Combo Legacy Vol.08 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2025.12.20</span>
+                <span class="appearance-title">Vol.08</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol07.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol07.jpg" alt="Full Combo Legacy Vol.07 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2025.12.06</span>
+                <span class="appearance-title">Vol.07</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol06.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol06.jpg" alt="Full Combo Legacy Vol.06 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2025.11.29</span>
+                <span class="appearance-title">Vol.06</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol05.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol05.jpg" alt="Full Combo Legacy Vol.05 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2025.11.15</span>
+                <span class="appearance-title">Vol.05</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol04.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol04.jpg" alt="Full Combo Legacy Vol.04 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2025.11.01</span>
+                <span class="appearance-title">Vol.04</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol03.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol03.jpg" alt="Full Combo Legacy Vol.03 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2025.10.18</span>
+                <span class="appearance-title">Vol.03</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol02.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol02.jpg" alt="Full Combo Legacy Vol.02 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2025.10.01</span>
+                <span class="appearance-title">Vol.02</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol01.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol01.jpg" alt="Full Combo Legacy Vol.01 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2025.09.20</span>
+                <span class="appearance-title">Vol.01</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance data-src="./assets/fcl-vol00.jpg">
+              <div class="appearance-thumb">
+                <img src="./assets/fcl-vol00.jpg" alt="Full Combo Legacy Vol.00 フライヤー" loading="lazy">
+              </div>
+              <div class="appearance-info">
+                <span class="appearance-date">2025.09.06</span>
+                <span class="appearance-title">Vol.00</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer reveal">
+        <p>&copy; Full Combo Legacy</p>
+      </footer>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" aria-label="閉じる">&times;</button>
+      <img src="" alt="フライヤー拡大表示">
+    </div>
+
+    <script src="./script.js"></script>
+    <script>
+      (function () {
+        var lightbox = document.getElementById("lightbox");
+        var lightboxImg = lightbox.querySelector("img");
+        var closeBtn = lightbox.querySelector(".lightbox-close");
+
+        document.querySelectorAll("[data-appearance]").forEach(function (card) {
+          card.addEventListener("click", function () {
+            var src = card.getAttribute("data-src");
+            lightboxImg.src = src;
+            lightboxImg.alt = card.querySelector("img").alt;
+            lightbox.classList.add("is-open");
+          });
+        });
+
+        closeBtn.addEventListener("click", function () {
+          lightbox.classList.remove("is-open");
+        });
+
+        lightbox.addEventListener("click", function (e) {
+          if (e.target === lightbox) {
+            lightbox.classList.remove("is-open");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
