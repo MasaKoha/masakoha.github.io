@@ -26,72 +26,81 @@
     <style>
       .appearances-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
       }
 
       .appearance-card {
         position: relative;
-        border-radius: var(--radius-md);
+        border-radius: 12px;
         overflow: hidden;
         cursor: pointer;
+        border: 1px solid var(--line);
         aspect-ratio: 1 / 1;
+        transition: transform 180ms ease, box-shadow 180ms ease;
       }
 
-      .appearance-card img {
+      .appearance-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      }
+
+      .appearance-thumb {
+        position: absolute;
+        inset: 0;
+      }
+
+      .appearance-thumb img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
-        transition: transform 300ms ease;
       }
 
-      .appearance-card:hover img {
-        transform: scale(1.04);
-      }
-
-      .appearance-overlay {
+      .appearance-info {
         position: absolute;
         inset: 0;
+        padding: 10px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding: 12px;
+        gap: 1px;
         background: linear-gradient(
           to top,
-          rgba(0, 0, 0, 0.88) 0%,
-          rgba(0, 0, 0, 0.4) 60%,
-          transparent 100%
+          rgba(0, 0, 0, 0.82) 0%,
+          rgba(0, 0, 0, 0.35) 55%,
+          rgba(0, 0, 0, 0.15) 100%
         );
-        opacity: 0;
-        transition: opacity 300ms ease;
-        pointer-events: none;
-      }
-
-      .appearance-card.is-active .appearance-overlay {
-        opacity: 1;
       }
 
       .appearance-date {
         font-family: "Space Grotesk", sans-serif;
-        font-size: 0.75rem;
+        font-size: 0.68rem;
         font-weight: 700;
         color: var(--accent);
-        letter-spacing: 0.06em;
+        letter-spacing: 0.04em;
       }
 
       .appearance-title {
-        font-size: 0.82rem;
+        display: block;
+        font-size: 0.75rem;
         font-weight: 700;
-        color: var(--ink);
+        color: #fff;
         line-height: 1.3;
-        margin-top: 4px;
       }
 
       .appearance-venue {
-        font-size: 0.72rem;
-        color: var(--muted);
-        margin-top: 2px;
+        display: block;
+        font-size: 0.65rem;
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .appearance-genre {
+        display: block;
+        font-size: 0.6rem;
+        color: var(--accent-second);
+        font-family: "Space Grotesk", sans-serif;
+        letter-spacing: 0.02em;
       }
 
       .year-heading {
@@ -103,25 +112,89 @@
         margin: 0;
       }
 
+      /* Lightbox overlay */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 300ms ease;
+      }
+
+      .lightbox.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .lightbox img {
+        max-width: 90vw;
+        max-height: 85vh;
+        border-radius: var(--radius-md);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        transform: scale(0.92);
+        transition: transform 300ms ease;
+      }
+
+      .lightbox.is-open img {
+        transform: scale(1);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        font-size: 1.4rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 180ms ease;
+      }
+
+      .lightbox-close:hover {
+        background: rgba(255, 255, 255, 0.24);
+      }
+
       @media (max-width: 720px) {
         .appearances-grid {
-          gap: 8px;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 6px;
         }
 
-        .appearance-overlay {
-          padding: 8px;
+        .appearance-card {
+          border-radius: 8px;
+        }
+
+        .appearance-info {
+          padding: 6px;
         }
 
         .appearance-date {
-          font-size: 0.65rem;
+          font-size: 0.54rem;
         }
 
         .appearance-title {
-          font-size: 0.7rem;
+          font-size: 0.58rem;
         }
 
         .appearance-venue {
-          font-size: 0.62rem;
+          font-size: 0.5rem;
+        }
+
+        .appearance-genre {
+          font-size: 0.48rem;
         }
       }
     </style>
@@ -142,7 +215,7 @@
             <p class="eyebrow">DJ Activity</p>
             <h1>出演一覧</h1>
             <p class="hero-text">
-              リアル現場での DJ 出演履歴。フライヤーをタップすると詳細が表示されます。
+              リアル現場での DJ 出演履歴。フライヤーをタップすると拡大表示されます。
             </p>
           </div>
         </section>
@@ -152,40 +225,49 @@
             <p class="year-heading">2026</p>
           </div>
           <div class="appearances-grid">
-            <article class="appearance-card" data-appearance>
-              <img
-                src="./assets/20260501flyer-harfmoon.jpeg"
-                alt="harfmoon DnB×J-CORE フライヤー"
-                loading="lazy"
-              >
-              <div class="appearance-overlay">
+            <article class="appearance-card" data-appearance data-src="./assets/20260501flyer-harfmoon.jpeg">
+              <div class="appearance-thumb">
+                <img
+                  src="./assets/20260501flyer-harfmoon.jpeg"
+                  alt="harfmoon フライヤー"
+                  loading="lazy"
+                >
+              </div>
+              <div class="appearance-info">
                 <span class="appearance-date">2026.05.01</span>
-                <span class="appearance-title">harfmoon DnB×J-CORE</span>
+                <span class="appearance-title">harfmoon</span>
                 <span class="appearance-venue">道玄坂教会</span>
+                <span class="appearance-genre">DnB × J-CORE</span>
               </div>
             </article>
-            <article class="appearance-card" data-appearance>
-              <img
-                src="./assets/20260503flyer-rythem.jpeg"
-                alt="音ゲーコンポーザー愛天下一舞踏会愛 フライヤー"
-                loading="lazy"
-              >
-              <div class="appearance-overlay">
+            <article class="appearance-card" data-appearance data-src="./assets/20260503flyer-rythem.jpeg">
+              <div class="appearance-thumb">
+                <img
+                  src="./assets/20260503flyer-rythem.jpeg"
+                  alt="音ゲーコンポーザー愛天下一舞踏会愛 フライヤー"
+                  loading="lazy"
+                >
+              </div>
+              <div class="appearance-info">
                 <span class="appearance-date">2026.05.03</span>
-                <span class="appearance-title">音ゲーコンポーザー愛天下一舞踏会愛 beatmaniaIIDX 1st-20(tricoro)</span>
+                <span class="appearance-title">音ゲーコンポーザー愛天下一舞踏会愛</span>
                 <span class="appearance-venue">nagomix渋谷</span>
+                <span class="appearance-genre">beatmaniaIIDX 1st-20(tricoro)</span>
               </div>
             </article>
-            <article class="appearance-card" data-appearance>
-              <img
-                src="./assets/20260505flyer-gloomy-goth.jpeg"
-                alt="Gloomy Goth Metaverse in Real フライヤー"
-                loading="lazy"
-              >
-              <div class="appearance-overlay">
+            <article class="appearance-card" data-appearance data-src="./assets/20260505flyer-gloomy-goth.jpeg">
+              <div class="appearance-thumb">
+                <img
+                  src="./assets/20260505flyer-gloomy-goth.jpeg"
+                  alt="Gloomy Goth Metaverse in Real フライヤー"
+                  loading="lazy"
+                >
+              </div>
+              <div class="appearance-info">
                 <span class="appearance-date">2026.05.05</span>
                 <span class="appearance-title">Gloomy Goth Metaverse in Real</span>
                 <span class="appearance-venue">新宿azito</span>
+                <span class="appearance-genre">Mainstream Hardcore</span>
               </div>
             </article>
           </div>
@@ -197,13 +279,37 @@
       </footer>
     </div>
 
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" aria-label="閉じる">&times;</button>
+      <img src="" alt="フライヤー拡大表示">
+    </div>
+
     <script src="./script.js"></script>
     <script>
-      document.querySelectorAll("[data-appearance]").forEach(function (card) {
-        card.addEventListener("click", function () {
-          card.classList.toggle("is-active");
+      (function () {
+        var lightbox = document.getElementById("lightbox");
+        var lightboxImg = lightbox.querySelector("img");
+        var closeBtn = lightbox.querySelector(".lightbox-close");
+
+        document.querySelectorAll("[data-appearance]").forEach(function (card) {
+          card.addEventListener("click", function () {
+            var src = card.getAttribute("data-src");
+            lightboxImg.src = src;
+            lightboxImg.alt = card.querySelector("img").alt;
+            lightbox.classList.add("is-open");
+          });
         });
-      });
+
+        closeBtn.addEventListener("click", function () {
+          lightbox.classList.remove("is-open");
+        });
+
+        lightbox.addEventListener("click", function (e) {
+          if (e.target === lightbox) {
+            lightbox.classList.remove("is-open");
+          }
+        });
+      })();
     </script>
   </body>
 </html>
