@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出演一覧 | Masakoha</title>
+    <meta name="description" content="Masakoha の DJ 出演一覧。リアル現場のイベント出演履歴をフライヤーとともに掲載。">
+    <meta property="og:title" content="出演一覧 | Masakoha">
+    <meta property="og:description" content="Masakoha の DJ 出演一覧">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.masakoha.com/appearances.html">
+    <meta property="og:image" content="https://www.masakoha.com/assets/masakoha_header.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://www.masakoha.com/appearances.html">
+    <link rel="icon" type="image/png" href="./assets/masakoha_icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    >
+    <script>
+      document.documentElement.classList.add("js-motion");
+    </script>
+    <link rel="stylesheet" href="./events.css">
+    <style>
+      .appearances-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .appearance-card {
+        position: relative;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        cursor: pointer;
+        aspect-ratio: 1 / 1;
+      }
+
+      .appearance-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 300ms ease;
+      }
+
+      .appearance-card:hover img {
+        transform: scale(1.04);
+      }
+
+      .appearance-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 12px;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.88) 0%,
+          rgba(0, 0, 0, 0.4) 60%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 300ms ease;
+        pointer-events: none;
+      }
+
+      .appearance-card.is-active .appearance-overlay {
+        opacity: 1;
+      }
+
+      .appearance-date {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.06em;
+      }
+
+      .appearance-title {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.3;
+        margin-top: 4px;
+      }
+
+      .appearance-venue {
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      .year-heading {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        margin: 0;
+      }
+
+      @media (max-width: 720px) {
+        .appearances-grid {
+          gap: 8px;
+        }
+
+        .appearance-overlay {
+          padding: 8px;
+        }
+
+        .appearance-date {
+          font-size: 0.65rem;
+        }
+
+        .appearance-title {
+          font-size: 0.7rem;
+        }
+
+        .appearance-venue {
+          font-size: 0.62rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar reveal">
+        <a class="brand" href="./index.html">Masataka Kohagura</a>
+        <nav class="topnav" aria-label="Section navigation">
+          <a href="./index.html#dj">DJ</a>
+          <a href="#appearances">Appearances</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero reveal" aria-label="Hero">
+          <div class="hero-copy">
+            <p class="eyebrow">DJ Activity</p>
+            <h1>出演一覧</h1>
+            <p class="hero-text">
+              リアル現場での DJ 出演履歴。フライヤーをタップすると詳細が表示されます。
+            </p>
+          </div>
+        </section>
+
+        <section id="appearances" class="section reveal">
+          <div class="section-head">
+            <p class="year-heading">2026</p>
+          </div>
+          <div class="appearances-grid">
+            <article class="appearance-card" data-appearance>
+              <img
+                src="./assets/20260501flyer-harfmoon.jpeg"
+                alt="harfmoon DnB×J-CORE フライヤー"
+                loading="lazy"
+              >
+              <div class="appearance-overlay">
+                <span class="appearance-date">2026.05.01</span>
+                <span class="appearance-title">harfmoon DnB×J-CORE</span>
+                <span class="appearance-venue">道玄坂教会</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance>
+              <img
+                src="./assets/20260503flyer-rythem.jpeg"
+                alt="音ゲーコンポーザー愛天下一舞踏会愛 フライヤー"
+                loading="lazy"
+              >
+              <div class="appearance-overlay">
+                <span class="appearance-date">2026.05.03</span>
+                <span class="appearance-title">音ゲーコンポーザー愛天下一舞踏会愛 beatmaniaIIDX 1st-20(tricoro)</span>
+                <span class="appearance-venue">nagomix渋谷</span>
+              </div>
+            </article>
+            <article class="appearance-card" data-appearance>
+              <img
+                src="./assets/20260505flyer-gloomy-goth.jpeg"
+                alt="Gloomy Goth Metaverse in Real フライヤー"
+                loading="lazy"
+              >
+              <div class="appearance-overlay">
+                <span class="appearance-date">2026.05.05</span>
+                <span class="appearance-title">Gloomy Goth Metaverse in Real</span>
+                <span class="appearance-venue">新宿azito</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer reveal">
+        <p>&copy; Masataka Kohagura</p>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+    <script>
+      document.querySelectorAll("[data-appearance]").forEach(function (card) {
+        card.addEventListener("click", function () {
+          card.classList.toggle("is-active");
+        });
+      });
+    </script>
+  </body>
+</html>
