@@ -167,6 +167,66 @@
         background: rgba(255, 255, 255, 0.24);
       }
 
+      .vrdj-list {
+        display: grid;
+        gap: 0;
+      }
+
+      .vrdj-item {
+        display: grid;
+        grid-template-columns: 100px 1fr auto;
+        gap: 12px;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .vrdj-item:last-child {
+        border-bottom: none;
+      }
+
+      .vrdj-date {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.02em;
+      }
+
+      .vrdj-title {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .vrdj-genre {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.72rem;
+        color: var(--accent-second);
+        text-align: right;
+      }
+
+      @media (max-width: 720px) {
+        .vrdj-item {
+          grid-template-columns: 1fr;
+          gap: 2px;
+          padding: 8px 0;
+        }
+
+        .vrdj-date {
+          font-size: 0.65rem;
+        }
+
+        .vrdj-title {
+          font-size: 0.75rem;
+        }
+
+        .vrdj-genre {
+          font-size: 0.62rem;
+          text-align: left;
+        }
+      }
+
       @media (max-width: 720px) {
         .appearances-grid {
           grid-template-columns: repeat(3, 1fr);
@@ -205,7 +265,8 @@
         <a class="brand" href="./index.html">Masataka Kohagura</a>
         <nav class="topnav" aria-label="Section navigation">
           <a href="./index.html#dj">DJ</a>
-          <a href="#appearances">Appearances</a>
+          <a href="#appearances">Real</a>
+          <a href="#vrdj">VRDJ</a>
         </nav>
       </header>
 
@@ -215,7 +276,7 @@
             <p class="eyebrow">DJ Activity</p>
             <h1>出演一覧</h1>
             <p class="hero-text">
-              リアル現場での DJ 出演履歴。フライヤーをタップすると拡大表示されます。
+              DJ 出演履歴。リアル現場のフライヤーはタップで拡大、VRDJ はリスト形式で掲載。
             </p>
           </div>
         </section>
@@ -272,9 +333,67 @@
             </article>
           </div>
         </section>
+
+        <section id="vrdj" class="section reveal">
+          <div class="section-head">
+            <p class="eyebrow">VRDJ</p>
+            <h2>VRDJ 出演</h2>
+          </div>
+
+          <div class="section-head">
+            <p class="year-heading">2026</p>
+          </div>
+          <div class="vrdj-list">
+            <div class="vrdj-item"><span class="vrdj-date">2026.05.25</span><span class="vrdj-title">SDC DnB Vol.08</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.05.23</span><span class="vrdj-title">FCL Vol.18</span><span class="vrdj-genre">音ゲー × J-CORE, J-DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.05.18</span><span class="vrdj-title">SDC DnB Vol.07</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.05.11</span><span class="vrdj-title">SDC DnB Vol.06</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.05.07</span><span class="vrdj-title">DJなんもわからん</span><span class="vrdj-genre">J-CORE, J-DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.04.20</span><span class="vrdj-title">SDC DnB Vol.05</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.04.15</span><span class="vrdj-title">RE:RAVE J-TRANCE</span><span class="vrdj-genre">J-TRANCE</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.04.13</span><span class="vrdj-title">SDC DnB Vol.04</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.03.30</span><span class="vrdj-title">SDC DnB Vol.03</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.03.15</span><span class="vrdj-title">DJ 同期会</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.03.08</span><span class="vrdj-title">SDC bootleg, Remix</span><span class="vrdj-genre">オールジャンル</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.03.07</span><span class="vrdj-title">FCL Vol.13</span><span class="vrdj-genre">音ゲー</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.03.02</span><span class="vrdj-title">DJ 農家</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.02.27</span><span class="vrdj-title">DJ Riot Core</span><span class="vrdj-genre">音ゲー</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.02.26</span><span class="vrdj-title">DJ Trancing Square</span><span class="vrdj-genre">J-TRANCE</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.02.18</span><span class="vrdj-title">SDC DnB Vol.02</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.02.17</span><span class="vrdj-title">DJ Club Kwoolon TRANCE</span><span class="vrdj-genre">J-TRANCE</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.02.14</span><span class="vrdj-title">SDC スマホゲーム</span><span class="vrdj-genre">オールジャンル</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.02.13</span><span class="vrdj-title">DJ Riot Core</span><span class="vrdj-genre">J-CORE</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.02.08</span><span class="vrdj-title">SDC DnB Vol.01</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.02.03</span><span class="vrdj-title">DJ RIOTCORE</span><span class="vrdj-genre">音ゲー × J-CORE</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.01.25</span><span class="vrdj-title">SDC Trance Vol.01</span><span class="vrdj-genre">J-TRANCE</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2026.01.13</span><span class="vrdj-title">SDC Chiffon Only</span><span class="vrdj-genre">DnB</span></div>
+          </div>
+
+          <div class="section-head" style="margin-top: 24px;">
+            <p class="year-heading">2025</p>
+          </div>
+          <div class="vrdj-list">
+            <div class="vrdj-item"><span class="vrdj-date">2025.12.28</span><span class="vrdj-title">Club Moon Hopper</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.12.23</span><span class="vrdj-title">Club Kowloon</span><span class="vrdj-genre">J-TRANCE</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.12.22</span><span class="vrdj-title">SDC Shark RAVE</span><span class="vrdj-genre">DnB</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.12.20</span><span class="vrdj-title">FCL Vol.08</span><span class="vrdj-genre">音ゲー</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.12.03</span><span class="vrdj-title">RE:RAVE</span><span class="vrdj-genre">音ゲー</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.11.29</span><span class="vrdj-title">FCL Vol.06</span><span class="vrdj-genre">音ゲー</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.11.21</span><span class="vrdj-title">RIOT CORE</span><span class="vrdj-genre">J-CORE</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.11.14</span><span class="vrdj-title">くらぶよちよち DJ</span><span class="vrdj-genre">J-CORE</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.11.07</span><span class="vrdj-title">Initium</span><span class="vrdj-genre">音ゲー</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.11.01</span><span class="vrdj-title">FCL Vol.04</span><span class="vrdj-genre">音ゲー</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.10.28</span><span class="vrdj-title">Club Kwoolon DJ</span><span class="vrdj-genre">UK-HARDCORE, J-CORE</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.10.01</span><span class="vrdj-title">FCL Vol.02</span><span class="vrdj-genre">音ゲー</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.09.06</span><span class="vrdj-title">FCL Vol.00</span><span class="vrdj-genre">音ゲー</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.03.01</span><span class="vrdj-title">VRC誰でもDJ vol.9</span><span class="vrdj-genre">音ゲー</span></div>
+            <div class="vrdj-item"><span class="vrdj-date">2025.02.26</span><span class="vrdj-title">風の音</span><span class="vrdj-genre">音ゲー</span></div>
+          </div>
+        </section>
       </main>
 
       <footer class="footer reveal">
+        <p>連絡は <a href="https://twitter.com/m4s4k0h4" target="_blank" rel="noopener noreferrer">X</a> の DM または <a href="https://www.instagram.com/masakoha/" target="_blank" rel="noopener noreferrer">Instagram</a> の DM まで</p>
         <p>&copy; Masataka Kohagura</p>
       </footer>
     </div>
